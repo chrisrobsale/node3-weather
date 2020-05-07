@@ -14,13 +14,15 @@ weatherForm.addEventListener('submit', (e) => {
     fetch('/weather?address='+location).then((res) => {
         res.json().then((data) => {
             if(data.error){
-                console.log(data.error)
+                // console.log(data.error)
                 messageOne.textContent = data.error
             }else{
                 messageOne.textContent = data.location
                 messageTwo.textContent = data.forecast.description + '. It is currently ' + data.forecast.temperature + ' degrees out.'
-                console.log(data.location)
-                console.log(data.forecast)
+                messageTwo.textContent += "\nIt feels like " + data.forecast.feelslike + " degrees out."
+                messageTwo.textContent += "\nThe humidity is " + data.forecast.humidity + "%."
+                // console.log(data.location)
+                // console.log(data.forecast)
             }
         })
     })
